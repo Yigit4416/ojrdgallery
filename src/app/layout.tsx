@@ -14,7 +14,7 @@ function TopNav() {
   return(
     <nav className="flex items-center justify-between p-4 text-xl 
     font-semibold border-b p-4">
-      <div>Gallery</div>
+      <div>Ojrd Gallery</div>
       <div>Sign In</div>
     </nav>
   )
