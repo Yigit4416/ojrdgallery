@@ -1,8 +1,6 @@
-import { url } from "inspector";
-import { imageConfigDefault } from "next/dist/shared/lib/image-config";
-import { Url } from "next/dist/shared/lib/router/router";
-import Link from "next/link";
 import { db } from "../server/db";
+
+export const dynamic = "force-dynamic"
 
 const mockData = [
     "https://ij4eipjgdx.ufs.sh/f/7DMPrD3VFYSJS9TXkjRFf9ekPiadgN6c8yTLvmKD3qIHYuWO",
