@@ -2,8 +2,8 @@
 
 ## TODO
 
-- [ ] deploy (w/ vercel)
-- [ ] scaffold basic ui with mock data
+- [x] deploy (w/ vercel)
+- [x] scaffold basic ui with mock data (w/ uploadthing)
 - [ ] setup db (w/ vercel postgres)
 - [ ] attach db to ui
 - [ ] add auth (w/ clerk)
