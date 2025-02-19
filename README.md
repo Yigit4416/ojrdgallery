@@ -4,8 +4,8 @@
 
 - [x] deploy (w/ vercel)
 - [x] scaffold basic ui with mock data (w/ uploadthing)
-- [ ] setup db (w/ vercel postgres)
-- [ ] attach db to ui
+- [x] setup db (w/ vercel postgres)
+- [x] attach db to ui
 - [ ] add auth (w/ clerk)
 - [ ] add image upload
 - [ ] error managment (w/ sentry)
