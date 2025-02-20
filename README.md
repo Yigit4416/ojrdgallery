@@ -9,9 +9,9 @@
 - [x] add auth (w/ clerk)
 - [ ] add image upload
 - [ ] "taint" (server only)
+- [ ] use Next/image component
 - [ ] error managment (w/ sentry)
 - [ ] routing/image page (parallel route)
 - [ ] delete button (w/ server actions)
 - [ ] analytics (posthog)
 - [ ] rate limiting (upstash)
-- [ ] 
