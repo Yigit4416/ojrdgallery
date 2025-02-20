@@ -5,6 +5,10 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    images: {
+        remotePatterns: [{hostname: 'ij4eipjgdx.ufs.sh'}],
+    }
+};
 
 export default config;
