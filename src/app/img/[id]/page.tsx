@@ -1,4 +1,4 @@
-import { getSingleImage } from "~/server/queries";
+import FullImagePageView from "~/app/components/full-image-page";
 
 export default async function PhotoPage({
     params,
@@ -7,15 +7,5 @@ export default async function PhotoPage({
   }) {
     
     const id = (await params).id;
-    const imgUrl = await getSingleImage(Number(id))
-    return (
-      <div className="
-      w-full
-      h-full
-      ">
-        <img src={imgUrl} alt="img" className="
-        w-96
-        " />
-      </div>
-    );
+    return <FullImagePageView id={Number(id)} />
   }
