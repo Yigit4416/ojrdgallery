@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic"
 async function Images() {
   const images = await getMyImages();
   return (
-    [...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ].map((image) => (
+    images.map((image) => (
       <div key={image.id} className="w-48 flex flex-col">
         <Link href={`/img/${image.id}`}>
           <Image 
