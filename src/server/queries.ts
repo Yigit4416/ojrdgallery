@@ -26,5 +26,5 @@ export async function getSingleImage(photoId: number) {
   if (!image) throw new Error("İmage not found")
   if(image.userId !== user.userId) throw new Error("Unauthorized")
 
-  return image.url;
+  return image;
 }
