@@ -27,13 +27,15 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={GeistSans.variable}>
-        <body className="font-sans">
-          <NextSSRPlugin 
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
+        <NextSSRPlugin 
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
+        <body className="font-sans h-screen overflow-hidden">
           <SpeedInsights />
-          <TopNav />
-          {children}
+          <div className="grid grid-rows-[auto,1fr] h-full">
+            <TopNav />
+            <main className="overflow-y-auto">{children}</main>
+          </div>
           {modal}
           <div id="modal-root" />
         </body>
