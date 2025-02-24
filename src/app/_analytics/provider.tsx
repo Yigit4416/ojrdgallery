@@ -1,6 +1,5 @@
 'use client'
 import { useAuth, useUser } from '@clerk/nextjs'
-import { EmailAddress } from '@clerk/nextjs/server'
 import posthog from 'posthog-js'
 import { PostHogProvider as PHProvider } from 'posthog-js/react'
 import { useEffect } from 'react'
@@ -34,7 +33,7 @@ function PostHogAuthWrapper({ children }: { children: React.ReactNode }) {
         username: userInfo.user.username
       })
     } else if (!auth.isSignedIn){
-      posthog.reset
+      posthog.reset();
     }
   }, [auth, userInfo])
 
