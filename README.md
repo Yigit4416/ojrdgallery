@@ -13,7 +13,7 @@
 - [x] error managment (w/ sentry)
 - [x] routing/image page (parallel route)
 - [x] make upload button more appealing
-- [ ] analytics (posthog)
+- [x] analytics (posthog)
 - [ ] delete button (w/ server actions)
 - [ ] rate limiting (upstash)
 - [ ] turn normal toast to promises (you can look API from here https://sonner.emilkowal.ski/toast)

@@ -46,7 +46,7 @@ export default function SimpleUploadButton() {
     const router = useRouter()
 
     const {inputProps} = useUploadThingInputProps("imageUploader", {
-            onUploadBegin(res) {
+            onUploadBegin() {
                 // Captures upload button press
                 posthog.capture("uplaod_begin")
                 toast.success("Upload begins", {
