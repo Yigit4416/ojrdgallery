@@ -40,7 +40,7 @@ export default function RootLayout({
           {modal}
           <div id="modal-root" />
           <div className="bg-slate-600">
-            <Toaster theme="dark"/>
+            <Toaster richColors closeButton/>
           </div>
         </body>
       </html>

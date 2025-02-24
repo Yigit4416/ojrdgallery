@@ -37,29 +37,27 @@ export function UploadSVG() {
         </svg>
     )
 }
-
+// TODO: Make it avaliable for multiple uploads
 export default function SimpleUploadButton() {
     const {inputProps} = useUploadThingInputProps("imageUploader", 
         {
             onUploadBegin(res) {
-                toast("Upload begins", {
-                    duration: 100000,
+                toast.success("Upload begins", {
                     id: "upload-begin"
                 })
             },
             onUploadProgress(progress) {
-                if (progress !== 0) toast(`${progress}`, {
-                    duration: 100000,
-                    id: "upload-progress"
+                if (progress !== 0) toast.info(`%${progress}`, {
+                    id: "upload-progres"
                 })
             },
             onClientUploadComplete(res) {
-                router.refresh();
-                toast.dismiss("upload-begin")
-                toast.dismiss("upload-progress")
-                toast("Upload is finished", {
-                    duration: 100000
-                })
+                toast.success("Upload finished", { id: "upload-finish" });
+            
+                // Delay router.refresh() slightly to ensure toast is visible
+                setTimeout(() => {
+                    router.refresh();
+                }, 500);
             }
     },
 );
