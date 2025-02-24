@@ -11,6 +11,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "~/app/api/uploadthing/core";
 import React from "react";
 import { Toaster } from "sonner";
+import { PostHogProvider } from "./_analytics/provider";
 
 export const metadata: Metadata = {
   title: "Ojrd Gallery",
@@ -27,23 +28,25 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={GeistSans.variable}>
-        <NextSSRPlugin 
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        />
-        <body className="font-sans h-screen overflow-hidden dark">
-          <SpeedInsights />
-          <div className="grid grid-rows-[auto,1fr] h-full">
-            <TopNav />
-            <main className="overflow-y-auto">{children}</main>
-          </div>
-          {modal}
-          <div id="modal-root" />
-          <div className="bg-slate-600">
-            <Toaster richColors closeButton/>
-          </div>
-        </body>
-      </html>
+      <PostHogProvider>
+        <html lang="en" className={GeistSans.variable}>
+          <NextSSRPlugin 
+            routerConfig={extractRouterConfig(ourFileRouter)}
+          />
+          <body className="font-sans h-screen overflow-hidden dark">
+            <SpeedInsights />
+              <div className="grid grid-rows-[auto,1fr] h-full">
+                <TopNav />
+                <main className="overflow-y-auto">{children}</main>
+              </div>
+              {modal}
+              <div id="modal-root" />
+              <div className="bg-slate-600">
+                <Toaster richColors closeButton/>
+              </div>
+          </body>
+        </html>
+      </PostHogProvider>
     </ClerkProvider>
   );
 }
