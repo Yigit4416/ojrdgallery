@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { usePostHog } from "posthog-js/react";
 import { toast } from "sonner";
 import { useUploadThing } from "~/utils/uploadthing";
 
@@ -39,9 +40,15 @@ export function UploadSVG() {
 }
 // TODO: Make it avaliable for multiple uploads
 export default function SimpleUploadButton() {
-    const {inputProps} = useUploadThingInputProps("imageUploader", 
-        {
+    const posthog = usePostHog();
+
+    // select next/navigation BE CAREFUL
+    const router = useRouter()
+
+    const {inputProps} = useUploadThingInputProps("imageUploader", {
             onUploadBegin(res) {
+                // Captures upload button press
+                posthog.capture("uplaod_begin")
                 toast.success("Upload begins", {
                     id: "upload-begin"
                 })
@@ -59,10 +66,8 @@ export default function SimpleUploadButton() {
                     router.refresh();
                 }, 500);
             }
-    },
-);
-    // select next/navigation BE CAREFUL
-    const router = useRouter()
+        },
+    );
 
     return(
         <div>
