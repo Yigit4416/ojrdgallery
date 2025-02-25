@@ -69,10 +69,15 @@ export default function SimpleUploadButton() {
           id: "upload-progres",
         });
     },
-    onClientUploadComplete(res) {
+    onClientUploadComplete() {
       toast.success("Upload finished", { id: "upload-finish" });
       router.refresh();
     },
+    onUploadError(error) {
+      console.log(error)
+      toast.dismiss("upload-begin")
+      posthog.capture("upload rate limiter hit")
+    }
   });
 
   return (
