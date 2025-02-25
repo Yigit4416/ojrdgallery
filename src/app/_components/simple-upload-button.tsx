@@ -17,7 +17,6 @@ const useUploadThingInputProps = (...args: Input) => {
     const selectedFiles = Array.from(e.target.files);
     const result = await $ut.startUpload(selectedFiles);
 
-    console.log("uploaded files", result);
     // TODO: persist result in state maybe?
   };
 
@@ -32,56 +31,63 @@ const useUploadThingInputProps = (...args: Input) => {
 };
 
 export function UploadSVG() {
-    return(
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-        </svg>
-    )
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
+      />
+    </svg>
+  );
 }
 // TODO: Make it avaliable for multiple uploads
 export default function SimpleUploadButton() {
-    const posthog = usePostHog();
+  const posthog = usePostHog();
 
-    // select next/navigation BE CAREFUL
-    const router = useRouter()
+  // select next/navigation BE CAREFUL
+  const router = useRouter();
 
-    const {inputProps} = useUploadThingInputProps("imageUploader", {
-            onUploadBegin() {
-                // Captures upload button press
-                posthog.capture("uplaod_begin")
-                toast.success("Upload begins", {
-                    id: "upload-begin"
-                })
-            },
-            onUploadProgress(progress) {
-                if (progress !== 0) toast.info(`%${progress}`, {
-                    id: "upload-progres"
-                })
-            },
-            onClientUploadComplete(res) {
-                toast.success("Upload finished", { id: "upload-finish" });
-            
-                // Delay router.refresh() slightly to ensure toast is visible
-                setTimeout(() => {
-                    router.refresh();
-                }, 500);
-            }
-        },
-    );
+  const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onUploadBegin() {
+      // Captures upload button press
+      posthog.capture("uplaod_begin");
+      toast.success("Upload begins", {
+        id: "upload-begin",
+      });
+    },
+    onUploadProgress(progress) {
+      if (progress !== 0)
+        toast.info(`%${progress}`, {
+          id: "upload-progres",
+        });
+    },
+    onClientUploadComplete(res) {
+      toast.success("Upload finished", { id: "upload-finish" });
+      router.refresh();
+    },
+  });
 
-    return(
-        <div>
-            <button>
-                <label htmlFor="upload-button" className="cursor-pointer">
-                    <UploadSVG />
-                </label>
-                <input 
-                    id="upload-button" 
-                    type="file" 
-                    className="sr-only" 
-                    {...inputProps} 
-                />
-            </button>
-        </div>
-    )
+  return (
+    <div>
+      <button>
+        <label htmlFor="upload-button" className="cursor-pointer">
+          <UploadSVG />
+        </label>
+        <input
+          id="upload-button"
+          type="file"
+          className="sr-only"
+          {...inputProps}
+        />
+      </button>
+    </div>
+  );
 }
