@@ -5,7 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 import { images } from "./db/schema";
 import { eq, and } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import analyticsServerClient from "./analytics";
 import PostHogClient from "./analytics";
 
 export async function getMyImages() {
