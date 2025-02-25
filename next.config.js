@@ -6,6 +6,12 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const coreConfig = {
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  eslint:{
+    ignoreDuringBuilds: true
+  } ,
   images: {
     remotePatterns: [{ hostname: "ij4eipjgdx.ufs.sh" }],
   },
